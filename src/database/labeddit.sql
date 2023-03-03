@@ -19,10 +19,13 @@ CREATE TABLE posts (
     content TEXT NOT NULL,
     likes INTEGER DEFAULT (0) NOT NULL,
     dislikes INTEGER DEFAULT (0) NOT NULL,
+    created_at TEXT DEFAULT (DATETIME()) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+DROP TABLE posts;
+
 
 INSERT into POSTS (id,user_id,content) VALUES
 ("p002","u002","Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.");
@@ -42,6 +45,7 @@ CREATE TABLE comments (
     comment TEXT NOT NULL,
     likes INTEGER DEFAULT (0) NOT NULL,
     dislikes INTEGER DEFAULT (0) NOT NULL,
+    created_at TEXT DEFAULT (DATETIME()) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -82,3 +86,6 @@ DROP TABLE comments_likes_dislikes;
 
 
 -- join tables posts and user --
+
+SELECT * FROM posts
+INNER JOIN users;
