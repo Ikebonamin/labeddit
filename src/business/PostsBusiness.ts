@@ -98,7 +98,7 @@ export class PostsBusiness {
     if (!token) {
       throw new NotFoundError(" 'Token' ausente ou incorreto");
     }
-    if (post_id) {
+    if (id_post) {
       throw new NotFoundError(" 'Token' ausente ou incorreto");
     }
 
