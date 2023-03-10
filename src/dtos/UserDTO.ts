@@ -1,14 +1,21 @@
-export interface UserDTOInput {
-  id: unknown,
-  apelido: unknown,
-  email: unknown,
-  password: unknown,
-  created_at: unknown,
+export interface SignupDTOInput {
+  apelido: unknown;
+  email: unknown;
+  password: unknown;
 }
-export interface UserDTOOutput {
-  id: string,
-  apelido: string,
-  email: string,
-  password: string,
-  createdAt: string,
+export interface SignUpDTOOutput {
+  token: string;
+}
+
+export interface LogInDTO {
+  email: unknown;
+  password: unknown;
+}
+
+export interface LogOutDTO {
+  token: string;
+}
+
+export interface LoginOutputDTO {
+  token: string;
 }

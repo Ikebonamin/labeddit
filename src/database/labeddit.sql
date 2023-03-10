@@ -7,7 +7,7 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     created_at TEXT DEFAULT (DATETIME()) NOT NULL
 );
-
+DROP table users;
 INSERT into USERS (id,apelido,email,password) VALUES
 ("u001","ike","bonamin.ike@gail.com","345erd"),
 ("u002", "Mariana", "mariana@email.com", "123erd"),
@@ -17,6 +17,7 @@ CREATE TABLE posts (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
     user_id TEXT NOT NULL,
     content TEXT NOT NULL,
+    comment TEXT,
     likes INTEGER DEFAULT (0) NOT NULL,
     dislikes INTEGER DEFAULT (0) NOT NULL,
     created_at TEXT DEFAULT (DATETIME()) NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE comments (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
-
+DROP TABLE comments;
 CREATE TABLE posts_likes_dislikes(
     user_id TEXT NOT NULL,
     post_id TEXT NOT NULL,
@@ -89,3 +90,4 @@ DROP TABLE comments_likes_dislikes;
 
 SELECT * FROM posts
 INNER JOIN users;
+SELECT * FROM posts

@@ -1,52 +1,114 @@
-import { PostsDB } from '../types';
+import { PostsDB, PostsModels } from '../types';
 
-export class Posts{
+export class Posts {
   constructor(
-    public id: string,
-    public userId: string,
-    public content: string,
-    public likes: number,
-    public dislikes: number,
-    public createdAt: string,
-  ){}
-public getId(): string{
-  return this.id; 
-}
-public getUserId(): string{
-  return this.userId; 
-} 
-public getContent(): string{
-  return this.content; 
-} 
-public getLikes(): number{
-  return this.likes; 
-} 
-public getDislikes(): number{
-  return this.dislikes; 
-}
-public getCreatedAt(): string{
-  return this.createdAt; 
-}
-public setId(id: string): void{
-  this.id = id;
-} 
-public setUserId(user_id: string): void{
-  this.userId = user_id;
-}
-public setContent(content: string): void{
-  this.content = content;
-}
-public setLikes(likes: number): void{
-  this.likes = likes;
-} 
-public toModelDB(): PostsDB{
-  return {
-    id: this.id,
-    user_id: this.userId,
-    content: this.content,
-    likes: this.likes,
-    dislikes: this.dislikes,
-    created_at: this.createdAt,
-  }     
-}
+    private id: string,
+    private content: string,
+    private comment: string,
+    private likes: number,
+    private dislikes: number,
+    private createdAt: string,
+    private user: {
+      id: string;
+      name: string;
+    }
+  ) {}
+
+  public getId(): string {
+    return this.id;
+  }
+
+  public setId(value: string): void {
+    this.id = value;
+  }
+
+  public getContent(): string {
+    return this.content;
+  }
+
+  public setContent(value: string): void {
+    this.content = value;
+  }
+
+  public getComment(): string | null {
+    return this.comment;
+  }
+
+  public setComment(value: string): void {
+    this.comment = value;
+  }
+
+  public getLikes(): number {
+    return this.likes;
+  }
+
+  public setLikes(value: number): void {
+    this.likes = value;
+  }
+
+  public addLike() {
+    this.likes += 1;
+  }
+
+  public removeLike() {
+    this.likes -= 1;
+  }
+
+  public getDislikes(): number {
+    return this.dislikes;
+  }
+
+  public setDislikes(value: number): void {
+    this.dislikes = value;
+  }
+  public addDislike() {
+    this.dislikes += 1;
+  }
+
+  public removeDislike() {
+    this.dislikes -= 1;
+  }
+
+  public getCreatedAt(): string {
+    return this.createdAt;
+  }
+
+  public setCreatedAt(value: string): void {
+    this.createdAt = value;
+  }
+
+  public getUser(): {
+    id: string;
+    name: string;
+  } {
+    return this.user;
+  }
+
+  public setUser(value: { id: string; name: string }) {
+    this.user = value;
+  }
+
+  public toModelsPostsDB(): PostsDB {
+    return {
+      id: this.id,
+      user_id: this.user.id,
+      content: this.content,
+      comment: this.comment,
+      likes: this.likes,
+      dislikes: this.dislikes,
+      created_at: this.createdAt,
+    };
+  }
+
+  public toBusinessPostsModels(): PostsModels {
+    return {
+      id: this.id,
+      userId: this.user.id,
+      content: this.content,
+      comment: this.comment,
+      likes: this.likes,
+      dislikes: this.dislikes,
+      createdAt: this.createdAt,
+    };
+  }
 }
